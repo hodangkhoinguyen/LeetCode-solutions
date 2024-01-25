@@ -4,28 +4,28 @@
     Time Complexity: O(nk), n is the length of the list and k is the length of a string
     Space Complexity: O(nk)
 """
-def groupAnagrams(self, strs):
-    """
-    :type strs: List[str]
-    :rtype: List[List[str]]
-    """
-
-    def parse_word(word):
+class Solution(object):
+    def groupAnagrams(self, strs):
         """
-        Convert a word to a tuple of letter frequency
-
-        Args:
-            word: str
+        :type strs: List[str]
+        :rtype: List[List[str]]
         """
-        freq = [0] * 26
-        for i in word:
-            freq[ord(i) - ord('a')] += 1
-        return tuple(freq)
+        def parse_word(word):
+            """
+            Convert a word to a tuple of letter frequency
 
-    # A dictionary with key as the parsing value and value as a list of anagrams
-    groups = dict()
-    for word in strs:
-        parse_value = parse_word(word)
-        groups.setdefault(parse_value, [])
-        groups[parse_value].append(word)
-    return groups.values()
+            Args:
+                word: str
+            """
+            freq = [0] * 26
+            for i in word:
+                freq[ord(i) - ord('a')] += 1
+            return tuple(freq)
+
+        # A dictionary with key as the parsing value and value as a list of anagrams
+        groups = dict()
+        for word in strs:
+            parse_value = parse_word(word)
+            groups.setdefault(parse_value, [])
+            groups[parse_value].append(word)
+        return groups.values()
